@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18161292859"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18161292859');
+  </script>
+  <title>AI Chatbots. ARD 352</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #4F23F0;
+      --orange: #FF5733;
+      --dark:   #1C1C1E;
+      --light:  #F5F3FF;
+      --white:  #FFFFFF;
+      --gray:   #6B7280;
+      --border: #E5E7EB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, nav, .btn { font-family: 'Space Grotesk', sans-serif; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+      z-index: 100;
+    }
+
+    .nav-logo { font-size: 1.4rem; font-weight: 700; color: var(--purple); letter-spacing: -0.5px; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.95rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--purple); }
+    .nav-links a.active { color: var(--purple); border-bottom: 2px solid var(--purple); padding-bottom: 2px; }
+
+    .btn {
+      display: inline-block; padding: 0.7rem 1.6rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      cursor: pointer; border: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,35,240,0.25); }
+    .btn-primary { background: var(--purple); color: var(--white); }
+    .btn-secondary { background: var(--light); color: var(--purple); }
+    .btn-orange { background: var(--orange); color: var(--white); }
+
+    /* HERO */
+    .hero {
+      padding: 130px 5% 90px;
+      background: linear-gradient(135deg, #0f0524 0%, #1a0845 50%, #0f0524 100%);
+      color: var(--white); text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,35,240,0.4) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(79,35,240,0.3);
+      border: 1px solid rgba(79,35,240,0.6);
+      color: #c4b5fd; padding: 0.4rem 1rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;
+      letter-spacing: 0.5px; position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700;
+      line-height: 1.15; margin-bottom: 1.2rem; position: relative;
+    }
+    .hero h1 .highlight { color: #a78bfa; }
+    .hero h1 .accent { color: var(--orange); }
+    .hero p {
+      font-size: 1.15rem; color: #c4b5fd;
+      max-width: 620px; margin: 0 auto 2.5rem; position: relative;
+    }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+    .hero-stats {
+      display: flex; gap: 3rem; justify-content: center;
+      margin-top: 4rem; padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1); position: relative;
+    }
+    .stat-num { font-size: 2rem; font-weight: 700; color: var(--white); }
+    .stat-label { font-size: 0.85rem; color: #a78bfa; margin-top: 0.2rem; }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background: var(--light); padding: 1.2rem 5%;
+      text-align: center; font-size: 0.9rem; color: var(--gray); font-weight: 500;
+    }
+    .trust-bar strong { color: var(--dark); }
+
+    /* SECTIONS */
+    section { padding: 80px 5%; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700;
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-sub { font-size: 1.05rem; color: var(--gray); max-width: 580px; }
+    .center { text-align: center; }
+    .center .section-sub { margin: 0 auto; }
+
+    /* WHAT IT DOES */
+    .features { background: var(--white); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .feature-card {
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.8rem; background: #fafafa;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(79,35,240,0.08); }
+    .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--gray); }
+
+    /* INDUSTRIES */
+    .industries { background: var(--light); }
+    .industry-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem; margin-top: 3rem;
+    }
+    .industry-pill {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem 1rem;
+      text-align: center; font-weight: 600; font-size: 0.95rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .industry-pill:hover { border-color: var(--purple); color: var(--purple); }
+    .industry-pill .ind-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+
+    /* HOW IT WORKS */
+    .how { background: var(--white); }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .step { text-align: center; }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), #7c3aed);
+      color: var(--white); font-size: 1.3rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.9rem; color: var(--gray); }
+
+    /* PRICING */
+    .pricing { background: var(--light); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem; align-items: start;
+    }
+    .pricing-card {
+      background: var(--white); border-radius: 16px; padding: 2rem;
+      border: 1px solid var(--border); position: relative;
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--purple);
+      box-shadow: 0 16px 48px rgba(79,35,240,0.15);
+    }
+    .featured-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--purple); color: var(--white);
+      font-size: 0.75rem; font-weight: 700; padding: 0.3rem 1rem;
+      border-radius: 50px; letter-spacing: 0.5px; white-space: nowrap;
+    }
+    .plan-name { font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem; }
+    .plan-price { font-size: 2.6rem; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 0.3rem; }
+    .plan-price span { font-size: 1rem; font-weight: 500; color: var(--gray); }
+    .plan-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .plan-features { list-style: none; margin-bottom: 2rem; }
+    .plan-features li { font-size: 0.9rem; padding: 0.4rem 0; display: flex; align-items: flex-start; gap: 0.6rem; }
+    .plan-features li::before { content: '✓'; color: var(--purple); font-weight: 700; flex-shrink: 0; }
+    .plan-features li.no::before { content: '✗'; color: var(--border); }
+    .plan-features li.no { color: var(--gray); }
+    .pricing-card .btn { width: 100%; text-align: center; }
+
+    /* DEMO PREVIEW */
+    .demo { background: #0f0524; color: var(--white); }
+    .demo .section-label { color: #a78bfa; }
+    .demo .section-title { color: var(--white); }
+    .demo .section-sub { color: #c4b5fd; }
+    .demo-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; margin-top: 3rem; align-items: center;
+    }
+    .demo-text h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+    .demo-point {
+      display: flex; gap: 1rem; margin-bottom: 1.2rem; align-items: flex-start;
+    }
+    .demo-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(79,35,240,0.4); border: 1px solid rgba(79,35,240,0.6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .demo-point-text h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+    .demo-point-text p { font-size: 0.85rem; color: #a78bfa; }
+    .chat-preview {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 1.5rem;
+    }
+    .chat-header {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1.2rem;
+    }
+    .chat-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .chat-name { font-weight: 700; color: var(--white); font-size: 0.95rem; }
+    .chat-status { font-size: 0.75rem; color: #4ade80; }
+    .message { margin-bottom: 0.8rem; }
+    .msg-bot {
+      background: rgba(79,35,240,0.3); border-radius: 0 12px 12px 12px;
+      padding: 0.8rem 1rem; font-size: 0.85rem; color: var(--white);
+      max-width: 85%; display: inline-block;
+    }
+    .msg-user {
+      background: rgba(255,255,255,0.1); border-radius: 12px 0 12px 12px;
+      padding: 0.8rem 1rem; font-size: 0.85rem; color: var(--white);
+      max-width: 85%; display: inline-block; float: right; clear: both;
+    }
+    .msg-wrap { overflow: hidden; margin-bottom: 0.8rem; }
+    .msg-time { font-size: 0.7rem; color: #a78bfa; margin-top: 0.3rem; }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--purple) 0%, #7c3aed 100%);
+      padding: 80px 5%; text-align: center; color: var(--white);
+    }
+    .cta-section h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; margin-bottom: 1rem; }
+    .cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.85); max-width: 560px; margin: 0 auto 2rem; }
+    .cta-note { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.6);
+      padding: 2.5rem 5%; display: flex; gap: 2rem;
+      justify-content: space-between; flex-wrap: wrap; font-size: 0.9rem;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--white); }
+    .footer-logo span { color: var(--orange); }
+
+    /* LEAD FORM */
+    .lead-form-wrap {
+      max-width: 560px; margin: 0 auto;
+    }
+    .lead-form {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px; padding: 2rem;
+      margin-top: 2rem; text-align: left;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.7); margin-bottom: 0.4rem;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%; padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px; color: var(--white);
+      font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus { border-color: #a78bfa; }
+    .form-group select option { background: #1a0845; color: var(--white); }
+    .form-group input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-submit {
+      width: 100%; padding: 0.9rem;
+      background: var(--orange); color: var(--white);
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .form-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,87,51,0.4); }
+    .form-divider {
+      text-align: center; color: rgba(255,255,255,0.4);
+      font-size: 0.85rem; margin: 1.2rem 0; position: relative;
+    }
+    .form-divider::before, .form-divider::after {
+      content: ''; position: absolute; top: 50%;
+      width: 42%; height: 1px; background: rgba(255,255,255,0.15);
+    }
+    .form-divider::before { left: 0; }
+    .form-divider::after { right: 0; }
+    .form-success {
+      display: none; text-align: center; padding: 2rem;
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 16px; margin-top: 2rem;
+    }
+    .form-success h3 { color: #4ade80; font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .form-success p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .demo-layout { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      footer { flex-direction: column; gap: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🚨 BREAKING-NEWS FOUNDING-CUSTOMER ALERT BAR (sticky top) -->
+<style>
+  @keyframes flash-bar {
+    0%, 49% { background: linear-gradient(90deg, #c40404 0%, #ff0000 50%, #c40404 100%); }
+    50%, 100% { background: linear-gradient(90deg, #1a0000 0%, #c40404 50%, #1a0000 100%); }
+  }
+  @keyframes caution-stripe-scroll {
+    from { background-position: 0 0; }
+    to   { background-position: 56px 0; }
+  }
+  @keyframes siren-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,0,0,1), 0 0 12px 4px rgba(255,80,80,0.9); transform: scale(1); }
+    50%      { box-shadow: 0 0 0 14px rgba(255,0,0,0), 0 0 24px 8px rgba(255,200,200,1); transform: scale(1.15); }
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(-100%); }
+  }
+  @keyframes breaking-blink {
+    0%, 80%   { opacity: 1; }
+    81%, 100% { opacity: 0.35; }
+  }
+  @keyframes modal-pop {
+    0%   { transform: scale(0.7); opacity: 0; }
+    60%  { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes modal-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80%      { transform: translateX(4px); }
+  }
+  @keyframes overlay-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .breaking-bar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.92rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-bottom: 4px solid #000;
+    animation: flash-bar 1s steps(1, end) infinite;
+  }
+  .breaking-bar::before, .breaking-bar::after {
+    content: "";
+    display: block;
+    height: 10px;
+    background-image: repeating-linear-gradient(45deg, #ffd400 0 14px, #000 14px 28px);
+    background-size: 56px 100%;
+    animation: caution-stripe-scroll 1.5s linear infinite;
+  }
+  .breaking-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.7rem 1rem;
+    white-space: nowrap;
+  }
+  .siren-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff0000 60%);
+    animation: siren-pulse 0.9s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .breaking-label {
+    background: #000;
+    color: #ff3333;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    animation: breaking-blink 1s steps(1,end) infinite;
+    flex-shrink: 0;
+    border: 1px solid #ff3333;
+  }
+  .breaking-marquee {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    height: 1.3em;
+  }
+  .breaking-marquee-text {
+    position: absolute;
+    white-space: nowrap;
+    animation: marquee-scroll 22s linear infinite;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+  }
+  .breaking-cta {
+    background: #ffd400;
+    color: #000;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    border: 2px solid #000;
+    box-shadow: 0 2px 0 #000;
+    transition: transform .12s ease;
+  }
+  .breaking-cta:hover { transform: translateY(-1px); box-shadow: 0 3px 0 #000; }
+
+  /* First-visit ALARM modal */
+  .alarm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,0,0,0.85);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: overlay-fade .25s ease both;
+  }
+  .alarm-modal {
+    max-width: 540px;
+    width: 100%;
+    background: linear-gradient(180deg, #1a0000 0%, #2a0000 100%);
+    border: 3px solid #ff3333;
+    border-radius: 16px;
+    padding: 2rem 1.8rem 1.6rem;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 30px 80px rgba(255,0,0,0.5);
+    animation: modal-pop .5s cubic-bezier(.2,1.4,.5,1) both, modal-shake .6s ease 0.55s both;
+    position: relative;
+  }
+  .alarm-modal .stripes {
+    position: absolute;
+    top: -3px; left: -3px; right: -3px;
+    height: 14px;
+    background-image: repeating-linear-gradient(45deg, #ffd400 0 14px, #000 14px 28px);
+    background-size: 56px 100%;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    animation: caution-stripe-scroll 1.5s linear infinite;
+  }
+  .alarm-modal .siren {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff0000 60%);
+    margin: 1rem auto 1.2rem;
+    animation: siren-pulse 0.9s ease-in-out infinite;
+  }
+  .alarm-modal .badge {
+    display: inline-block;
+    background: #000;
+    color: #ff3333;
+    border: 1.5px solid #ff3333;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 0.72rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+    animation: breaking-blink 1s steps(1,end) infinite;
+  }
+  .alarm-modal h2 {
+    margin: 0 0 0.6rem;
+    font-size: 1.8rem;
+    line-height: 1.15;
+    color: #fff;
+    text-shadow: 0 0 14px rgba(255,80,80,0.6);
+  }
+  .alarm-modal h2 .price {
+    color: #ffd400;
+    text-shadow: 0 0 10px rgba(255,212,0,0.6);
+  }
+  .alarm-modal p {
+    color: rgba(255,255,255,0.85);
+    margin: 0.4rem 0 0.6rem;
+    font-size: 0.98rem;
+  }
+  .alarm-modal .counter {
+    background: rgba(255,212,0,0.12);
+    border: 1px solid rgba(255,212,0,0.5);
+    color: #ffd400;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    margin: 0.9rem 0 1rem;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+  .alarm-modal .cta-btn {
+    display: block;
+    background: linear-gradient(180deg, #ffd400, #f5a700);
+    color: #000;
+    font-weight: 900;
+    font-size: 1.05rem;
+    text-decoration: none;
+    padding: 0.95rem 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #000;
+    box-shadow: 0 4px 0 #000;
+    margin: 0.8rem 0 0.4rem;
+    letter-spacing: 0.5px;
+    transition: transform .12s ease;
+  }
+  .alarm-modal .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #000; }
+  .alarm-modal .dismiss {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.55);
+    text-decoration: underline;
+    font-size: 0.82rem;
+    cursor: pointer;
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .alarm-modal .dismiss:hover { color: #fff; }
+  @media (max-width: 600px) {
+    .breaking-bar-inner { font-size: 0.78rem; gap: 0.5rem; padding: 0.55rem 0.7rem; }
+    .breaking-label { font-size: 0.68rem; padding: 0.2rem 0.45rem; }
+    .breaking-cta { font-size: 0.72rem; padding: 0.3rem 0.65rem; }
+    .alarm-modal h2 { font-size: 1.4rem; }
+  }
+</style>
+
+<div class="breaking-bar" role="banner" aria-label="Founding customer breaking news">
+  <div class="breaking-bar-inner">
+    <span class="siren-dot" aria-hidden="true"></span>
+    <span class="breaking-label">BREAKING</span>
+    <div class="breaking-marquee" aria-hidden="true">
+      <div class="breaking-marquee-text">
+        🚨 FIRST 10 FOUNDING CUSTOMERS ONLY · $297 SETUP + $97/MO LOCKED FOR LIFE · NORMALLY $497 + $297/MO · WHEN WE HIT 10, THE DOOR CLOSES · 🔒 LIFETIME RATE · 3–5 DAY BUILD · MULTI-YEAR DEALS LOCK YOUR RATE · 🚨
+      </div>
+    </div>
+    <a href="https://link.fastpaydirect.com/payment-link/6a0e67bec58f48c13d667039" target="_blank" class="breaking-cta">Claim Your Spot →</a>
+  </div>
+</div>
+
+<!-- 🚨 First-visit ALARM modal -->
+<div id="ard352-alarm-overlay" class="alarm-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="alarm-title">
+  <div class="alarm-modal">
+    <div class="stripes" aria-hidden="true"></div>
+    <div class="siren" aria-hidden="true"></div>
+    <span class="badge">🚨 BREAKING ANNOUNCEMENT</span>
+    <h2 id="alarm-title">First 10 Customers Only<br><span class="price">$297 setup + $97/mo</span></h2>
+    <p>That's a $200/month savings, <strong>locked in for the lifetime of your account.</strong></p>
+    <p>After we hit 10 customers, Basic returns to $497 setup + $297/month. No exceptions. No extensions.</p>
+    <div class="counter">⏳ Only 10 Founding Spots Available</div>
+    <a href="https://link.fastpaydirect.com/payment-link/6a0e67bec58f48c13d667039" target="_blank" class="cta-btn" onclick="ard352DismissAlarm()">🔒 Lock In My Founding Rate →</a>
+    <button type="button" class="dismiss" onclick="ard352DismissAlarm()">No thanks, I'll pay full price later</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Show alarm on first visit only (per browser, 7-day TTL)
+  try {
+    var KEY = 'ard352_alarm_seen';
+    var raw = localStorage.getItem(KEY);
+    var seenAt = raw ? parseInt(raw, 10) : 0;
+    var SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+    if (!seenAt || (Date.now() - seenAt) > SEVEN_DAYS) {
+      setTimeout(function() {
+        var ov = document.getElementById('ard352-alarm-overlay');
+        if (ov) ov.style.display = 'flex';
+      }, 800); // slight delay so page paints first
+    }
+  } catch (e) { /* localStorage unavailable; skip */ }
+
+  window.ard352DismissAlarm = function() {
+    var ov = document.getElementById('ard352-alarm-overlay');
+    if (ov) ov.style.display = 'none';
+    try { localStorage.setItem('ard352_alarm_seen', String(Date.now())); } catch (e) {}
+  };
+  // Click overlay (not the modal) dismisses
+  document.addEventListener('click', function(e) {
+    var ov = document.getElementById('ard352-alarm-overlay');
+    if (ov && e.target === ov) window.ard352DismissAlarm();
+  });
+  // Esc key dismisses
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') window.ard352DismissAlarm();
+  });
+})();
+</script>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">ARD <span>352</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="chatbot.html" class="active">AI Chatbots</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="index.html#usecases">Use Cases</a></li>
+  </ul>
+  <a href="#cta" class="btn btn-primary">Get Your Chatbot →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">AI CHATBOT AGENCY · AVAILABLE NATIONWIDE</div>
+  <h1 style="font-weight:900; letter-spacing:-0.02em;">When You Miss a Call,<br><span style="background:linear-gradient(90deg,#4F23F0,#a78bfa); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:900;">85% of Those Customers</span><br>Call Your <span style="color:#fff; font-weight:900; border-bottom:4px solid #4F23F0; padding-bottom:2px;">Competitor</span> Next.</h1>
+  <p style="font-size:1.2rem; max-width:680px; margin:1.4rem auto 1.8rem; font-weight:500; color:rgba(255,255,255,0.85); letter-spacing:0.01em;">We build the AI receptionist that catches every call <strong style="color:#fff; font-weight:800;">24/7</strong>, books the job, and texts the lead to your phone, so the next customer who needs you doesn't end up paying someone else.</p>
+  <div class="hero-cta">
+    <a href="#instant-callback" class="btn btn-primary" style="font-weight:800; letter-spacing:0.02em; background:linear-gradient(135deg,#FF5733,#ff8855); box-shadow:0 8px 24px rgba(255,87,51,0.45);">📞 Get an AI Call in 60 Seconds →</a>
+    <a href="#roi" class="btn btn-secondary" style="font-weight:600; letter-spacing:0.02em;">Calculate What You're Losing →</a>
+    <a href="#pricing" class="btn btn-secondary" style="font-weight:800; letter-spacing:0.02em;">See Pricing</a>
+  </div>
+
+  <!-- ⚡ INSTANT-CALLBACK LEAD FORM, fires Bland AI receptionist to call them in <60s -->
+  <div id="instant-callback" style="max-width:560px; margin:2.5rem auto 0; padding:0 1rem;">
+    <div style="background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border:1.5px solid rgba(167,139,250,0.45); border-radius:18px; padding:1.8rem 1.5rem; box-shadow:0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(79,35,240,0.15); backdrop-filter:blur(10px);">
+      <div style="text-align:center; margin-bottom:1.3rem;">
+        <div style="display:inline-block; padding:0.35rem 0.9rem; background:rgba(255,87,51,0.18); border:1px solid rgba(255,87,51,0.45); border-radius:50px; text-transform:uppercase; letter-spacing:2px; font-size:0.65rem; color:#ff8855; font-weight:800; margin-bottom:0.8rem;">⚡ INSTANT DEMO CALL</div>
+        <h3 style="color:#fff; font-size:1.4rem; font-weight:900; letter-spacing:-0.01em; margin:0 0 0.4rem;">See it work, on your own phone.</h3>
+        <p style="color:rgba(255,255,255,0.7); font-size:0.92rem; font-weight:500; margin:0; line-height:1.45;">Drop your number. Our AI receptionist calls you in 60 seconds, walks you through what it does, and answers your questions. Zero commitment.</p>
+      </div>
+      <form id="ard352-instant-form" onsubmit="return ard352SubmitInstant(event)" style="display:flex; flex-direction:column; gap:0.85rem;">
+        <input id="if-name" type="text" required placeholder="Your first name *" style="width:100%; padding:0.95rem 1.1rem; font-size:1rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:10px; font-weight:600;">
+        <input id="if-biz" type="text" required placeholder="Your business name *" style="width:100%; padding:0.95rem 1.1rem; font-size:1rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:10px; font-weight:600;">
+        <input id="if-phone" type="tel" required placeholder="Your cell number * (e.g. 352-555-0123)" style="width:100%; padding:0.95rem 1.1rem; font-size:1rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:10px; font-weight:600;">
+        <select id="if-vertical" style="width:100%; padding:0.95rem 1.1rem; font-size:1rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:10px; font-weight:600;">
+          <option value="general" style="background:#1C1C1E;">What kind of business?</option>
+          <option value="hvac" style="background:#1C1C1E;">HVAC / Heating & Cooling</option>
+          <option value="plumbing" style="background:#1C1C1E;">Plumbing</option>
+          <option value="dental" style="background:#1C1C1E;">Dental Practice</option>
+          <option value="medspa" style="background:#1C1C1E;">Med Spa / Aesthetics</option>
+          <option value="law" style="background:#1C1C1E;">Law Firm</option>
+          <option value="locksmith" style="background:#1C1C1E;">Locksmith</option>
+          <option value="ecom" style="background:#1C1C1E;">E-commerce</option>
+          <option value="general" style="background:#1C1C1E;">Other</option>
+        </select>
+        <input id="if-email" type="email" placeholder="Email (optional)" style="width:100%; padding:0.95rem 1.1rem; font-size:1rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:10px; font-weight:600;">
+        <button type="submit" id="if-submit" style="width:100%; padding:1.05rem 1.2rem; font-size:1.05rem; font-weight:900; letter-spacing:0.01em; background:linear-gradient(135deg,#FF5733,#ff8855); color:#fff; border:none; border-radius:12px; cursor:pointer; box-shadow:0 8px 24px rgba(255,87,51,0.45); transition:transform 0.15s, box-shadow 0.15s;">📞 Call Me Now (60 sec) →</button>
+        <div style="text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.5); margin-top:0.2rem;">We'll only call once. No spam, no resale. <a href="privacy.html" style="color:#a78bfa;">Privacy</a>.</div>
+      </form>
+      <div id="if-success" style="display:none; text-align:center; padding:1.2rem 0;">
+        <div style="font-size:3rem; margin-bottom:0.6rem;">📞</div>
+        <h3 style="color:#34c759; font-size:1.3rem; font-weight:900; margin:0 0 0.5rem;">Got it. Your phone will ring in 60 seconds.</h3>
+        <p style="color:rgba(255,255,255,0.75); font-size:0.95rem; margin:0;">Look for a call from a number you don't recognize. That's our AI receptionist calling you. Pick up, it's free and only takes a few minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function ard352SubmitInstant(e) {
+    e.preventDefault();
+    var btn = document.getElementById('if-submit');
+    btn.disabled = true; btn.innerText = 'Sending…';
+    var data = {
+      first_name: document.getElementById('if-name').value.trim(),
+      business_name: document.getElementById('if-biz').value.trim(),
+      phone: document.getElementById('if-phone').value.trim(),
+      vertical: document.getElementById('if-vertical').value || 'general',
+      email: document.getElementById('if-email').value.trim(),
+      source: 'getard352.com/chatbot.html-hero-form'
+    };
+    fetch('https://wahnish-way--inbound.modal.run', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r) {
+      document.getElementById('ard352-instant-form').style.display = 'none';
+      document.getElementById('if-success').style.display = 'block';
+      try {
+        if (typeof gtag === 'function') {
+          gtag('event', 'instant_callback_request', { value: 1, currency: 'USD' });
+        }
+      } catch (err) {}
+    })
+    .catch(function(err) {
+      btn.disabled = false; btn.innerText = '📞 Call Me Now (60 sec) →';
+      alert('Something went wrong. Try again or text us at (352) 743-3596.');
+    });
+    return false;
+  }
+  </script>
+
+  <div class="hero-stats" style="margin-top:3rem;">
+    <div>
+      <div class="stat-num" style="font-weight:900; color:#fff; font-size:2.8rem;">85%</div>
+      <div class="stat-label" style="font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.02em;">of missed callers dial your competitor next</div>
+    </div>
+    <div>
+      <div class="stat-num" style="font-weight:900; color:#fff; font-size:2.8rem;">62%</div>
+      <div class="stat-label" style="font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.02em;">of emergencies happen after hours</div>
+    </div>
+    <div>
+      <div class="stat-num" style="font-weight:900; color:#fff; font-size:2.8rem;">24/7</div>
+      <div class="stat-label" style="font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.02em;">AI answers · books · texts you the lead</div>
+    </div>
+  </div>
+
+  <!-- 60-SECOND DEMO VIDEO, compact, vertical 9:16, click-safe -->
+  <div style="max-width: 720px; margin: 3rem auto 0; padding: 0 1rem; text-align:center; position:relative; z-index:5;">
+    <div style="display:inline-block; padding:0.5rem 1.1rem; background:rgba(79,35,240,0.15); border:1px solid rgba(79,35,240,0.4); border-radius:50px; text-transform:uppercase; letter-spacing:3px; font-size:0.7rem; color:#a78bfa; font-weight:800; margin-bottom:1.2rem;">⏱ WATCH THE 60-SECOND DEMO</div>
+    <video controls playsinline preload="metadata" style="display:block; width:100%; max-width:640px; height:auto; margin:0 auto; border-radius:16px; box-shadow:0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(167,139,250,0.2); border:1.5px solid rgba(167,139,250,0.35); background:#000; position:relative; z-index:10; cursor:pointer;">
+      <source src="videos/hvac-demo-landscape.mp4" type="video/mp4">
+      <source src="/videos/hvac-demo-landscape.mp4" type="video/mp4">
+      Your browser doesn't support embedded video. <a href="https://youtu.be/gwLZvViwsgE" style="color:#a78bfa; font-weight:800;">Watch on YouTube</a>
+    </video>
+    <div style="text-align:center; margin-top:1rem; font-size:0.92rem; font-weight:600; color:rgba(255,255,255,0.7); letter-spacing:0.01em;">See exactly what your AI receptionist does, in 60 seconds.</div>
+    <div style="text-align:center; margin-top:0.6rem;">
+      <a href="https://youtu.be/gwLZvViwsgE" target="_blank" style="font-size:0.8rem; color:#a78bfa; text-decoration:underline;">Or watch on YouTube →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section id="roi" style="padding:5rem 1.5rem; background:linear-gradient(180deg, #0a0a14 0%, #050510 100%); position:relative;">
+  <div style="position:absolute; top:0; left:50%; transform:translateX(-50%); width:80%; max-width:600px; height:1px; background:linear-gradient(90deg, transparent, rgba(79,35,240,0.6), transparent);"></div>
+  <div style="max-width:780px; margin:0 auto; text-align:center;">
+    <div style="display:inline-block; padding:0.5rem 1.1rem; background:rgba(79,35,240,0.15); border:1px solid rgba(79,35,240,0.4); border-radius:50px; text-transform:uppercase; letter-spacing:3px; font-size:0.7rem; color:#a78bfa; font-weight:800; margin-bottom:1.2rem;">THE BRUTAL MATH</div>
+    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem); line-height:1.1; margin:0 0 1.2rem; color:#fff; font-weight:900; letter-spacing:-0.02em;">Find Out What Missed Calls Are <span style="background:linear-gradient(90deg,#ff3366,#ff6b6b); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:900;">Actually Costing You</span></h2>
+    <p style="color:rgba(255,255,255,0.7); font-size:1.1rem; max-width:580px; margin:0 auto 2.5rem; font-weight:500; line-height:1.55;">Enter your real numbers. See in dollars what's walking out the door every month, and what you keep when AI catches it.</p>
+
+    <div style="background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:2.5rem 1.8rem; box-shadow:0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(79,35,240,0.1); text-align:left; backdrop-filter:blur(10px);">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:1.5rem; margin-bottom:2rem;">
+        <div>
+          <label for="roi-missed" style="display:block; font-size:0.75rem; font-weight:800; color:#a78bfa; margin-bottom:0.6rem; text-transform:uppercase; letter-spacing:1.5px;">Calls Missed / Month</label>
+          <input id="roi-missed" type="number" value="20" min="0" max="500" style="width:100%; padding:1rem 1.2rem; font-size:1.3rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:12px; font-weight:900; letter-spacing:0.02em; transition:border-color 0.2s;">
+          <div style="font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.45); margin-top:0.5rem;">Most owners underestimate, your missed-call log will surprise you.</div>
+        </div>
+        <div>
+          <label for="roi-ticket" style="display:block; font-size:0.75rem; font-weight:800; color:#a78bfa; margin-bottom:0.6rem; text-transform:uppercase; letter-spacing:1.5px;">Avg Job Value ($)</label>
+          <input id="roi-ticket" type="number" value="2500" min="0" max="100000" step="100" style="width:100%; padding:1rem 1.2rem; font-size:1.3rem; background:rgba(0,0,0,0.5); border:1.5px solid rgba(167,139,250,0.3); color:#fff; border-radius:12px; font-weight:900; letter-spacing:0.02em; transition:border-color 0.2s;">
+          <div style="font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.45); margin-top:0.5rem;">HVAC ≈ $2,500 · Plumbing ≈ $2,500 · Locksmith ≈ $200 · Garage ≈ $600</div>
+        </div>
+      </div>
+
+      <div id="roi-results" style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1rem;">
+        <div style="background:linear-gradient(135deg, rgba(255,51,102,0.12), rgba(255,51,102,0.04)); border:1px solid rgba(255,51,102,0.3); border-radius:14px; padding:1.5rem 1rem; text-align:center;">
+          <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:2.5px; color:#ff3366; font-weight:800; margin-bottom:0.6rem;">LOSING / MONTH</div>
+          <div id="roi-losing" style="font-size:clamp(1.8rem,4vw,2.6rem); font-weight:900; color:#ff3366; letter-spacing:-0.02em;">$17,500</div>
+          <div style="font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.5); margin-top:0.5rem;">missed × 70% capture × 50% close × ticket</div>
+        </div>
+        <div style="background:linear-gradient(135deg, rgba(52,199,89,0.12), rgba(52,199,89,0.04)); border:1px solid rgba(52,199,89,0.3); border-radius:14px; padding:1.5rem 1rem; text-align:center;">
+          <div style="font-size:0.7rem; text-transform:uppercase; letter-spacing:2.5px; color:#34c759; font-weight:800; margin-bottom:0.6rem;">KEEPING WITH ARD 352</div>
+          <div id="roi-keeping" style="font-size:clamp(1.8rem,4vw,2.6rem); font-weight:900; color:#34c759; letter-spacing:-0.02em;">$17,403</div>
+          <div style="font-size:0.7rem; font-weight:600; color:rgba(255,255,255,0.5); margin-top:0.5rem;">recovered revenue minus $97/mo</div>
+        </div>
+      </div>
+
+      <div id="roi-payback" style="margin-top:1.5rem; text-align:center; padding:1.1rem; background:rgba(79,35,240,0.12); border-radius:12px; border:1px solid rgba(79,35,240,0.3);">
+        <span style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.85); text-transform:uppercase; letter-spacing:2px;">Payback period:</span>
+        <span id="roi-payback-num" style="font-size:1.4rem; font-weight:900; color:#a78bfa; margin-left:0.6rem; letter-spacing:-0.01em;">Less than 1 day</span>
+      </div>
+
+      <div style="text-align:center; margin-top:2rem;">
+        <a href="#pricing" class="btn btn-primary" style="font-size:1.1rem; padding:1.2rem 2.4rem; font-weight:800; letter-spacing:0.02em;">Lock in Founding Rate, $297 + $97/mo →</a>
+        <div style="font-size:0.75rem; font-weight:600; color:rgba(255,255,255,0.5); margin-top:1rem;">Math assumes industry-standard 70% capture & 50% close, verifiable with your own books.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    const $missed = document.getElementById('roi-missed');
+    const $ticket = document.getElementById('roi-ticket');
+    const $losing = document.getElementById('roi-losing');
+    const $keeping = document.getElementById('roi-keeping');
+    const $payback = document.getElementById('roi-payback-num');
+    const fmt = n => '$' + Math.max(0, Math.round(n)).toLocaleString();
+    function calc(){
+      const m = Math.max(0, parseFloat($missed.value) || 0);
+      const t = Math.max(0, parseFloat($ticket.value) || 0);
+      const lost = m * 0.70 * 0.50 * t;
+      const keeping = lost - 97;
+      $losing.textContent = fmt(lost);
+      $keeping.textContent = fmt(keeping);
+      if (lost <= 0) {
+        $payback.textContent = ', ';
+      } else {
+        const days = Math.max(1, Math.round(97 / (lost / 30)));
+        $payback.textContent = days <= 1 ? 'Less than 1 day' : days + ' days';
+      }
+    }
+    [$missed, $ticket].forEach(el => el.addEventListener('input', calc));
+    calc();
+  })();
+</script>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  Works with <strong>any website</strong> · Connects to your existing calendar, CRM, and email · <strong>Live in 3–5 days</strong>
+</div>
+
+<!-- WHAT IT DOES -->
+<section class="features" id="features">
+  <div class="center">
+    <div class="section-label">WHAT IT DOES</div>
+    <h2 class="section-title">One chatbot. Four jobs it does without you.</h2>
+    <p class="section-sub">Your AI chatbot isn't just a FAQ box, it's a full-time employee that never calls in sick.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <h3>Answers FAQs Instantly</h3>
+      <p>Trained on your business (hours, pricing, services, location, policies). Visitors get real answers in seconds, not voicemails.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Captures & Qualifies Leads</h3>
+      <p>Collects name, phone, email, and service needed. Every lead lands in your CRM automatically, no manual entry required.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Books Appointments</h3>
+      <p>Connects to your calendar and lets visitors book directly in chat. No back-and-forth. No missed calls. Just confirmed appointments.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <h3>Notifies You Instantly</h3>
+      <p>Every new lead and booking triggers a real-time notification to your phone or email. You're always in the loop without being online.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌙</div>
+      <h3>Works After Hours</h3>
+      <p>Most leads come in nights and weekends when you're off. Your chatbot keeps working so you never lose a customer to silence.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3>Plugs Into Your Stack</h3>
+      <p>GoHighLevel, HubSpot, Calendly, Google Calendar, Outlook, or custom CRMs, we integrate with what you already use.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="industries" id="industries">
+  <div class="center">
+    <div class="section-label">WHO IT'S BUILT FOR</div>
+    <h2 class="section-title">Any business that gets leads online</h2>
+    <p class="section-sub">If customers visit your site and you want to convert more of them, this is for you.</p>
+  </div>
+  <div class="industry-grid">
+    <div class="industry-pill"><span class="ind-icon">🦷</span>Dental Offices</div>
+    <div class="industry-pill"><span class="ind-icon">🏠</span>Real Estate</div>
+    <div class="industry-pill"><span class="ind-icon">❄️</span>HVAC Companies</div>
+    <div class="industry-pill"><span class="ind-icon">⚖️</span>Law Firms</div>
+    <div class="industry-pill"><span class="ind-icon">✂️</span>Salons & Spas</div>
+    <div class="industry-pill"><span class="ind-icon">🔧</span>Home Services</div>
+    <div class="industry-pill"><span class="ind-icon">💊</span>Med Spas</div>
+    <div class="industry-pill"><span class="ind-icon">🚗</span>Auto Dealers</div>
+    <div class="industry-pill"><span class="ind-icon">🏋️</span>Gyms & Studios</div>
+    <div class="industry-pill"><span class="ind-icon">🏗️</span>Contractors</div>
+    <div class="industry-pill"><span class="ind-icon">💼</span>Insurance</div>
+    <div class="industry-pill"><span class="ind-icon">📦</span>eCommerce</div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="center">
+    <div class="section-label">THE PROCESS</div>
+    <h2 class="section-title">Live in 3–5 days, guaranteed.</h2>
+    <p class="section-sub">We handle everything. You just answer a few questions about your business and we take it from there.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Pick Your Plan & Pay</h3>
+      <p>Choose the plan that fits your business. Secure checkout, card, Google Pay, or Klarna. Takes 60 seconds.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Fill Out Your Business Brief</h3>
+      <p>After payment you'll complete a short intake form. We train the AI on your services, FAQs, pricing, and brand voice, fully custom.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>We Build & Test It</h3>
+      <p>We connect your calendar, CRM, and notification channels. Every flow is tested before it goes live on your site.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>It Runs. We Maintain.</h3>
+      <p>Your chatbot is live 24/7. We monitor performance, update responses as your business evolves, and handle all tech issues.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<!-- COMPETITOR COMPARISON -->
+<section style="padding:5rem 1.5rem; background:#0a0a14;">
+  <div style="max-width:1040px; margin:0 auto; text-align:center;">
+    <div style="display:inline-block; padding:0.5rem 1.1rem; background:rgba(79,35,240,0.15); border:1px solid rgba(79,35,240,0.4); border-radius:50px; text-transform:uppercase; letter-spacing:3px; font-size:0.7rem; color:#a78bfa; font-weight:800; margin-bottom:1.2rem;">HOW WE COMPARE</div>
+    <h2 style="font-size:clamp(2rem,4.5vw,2.8rem); line-height:1.1; margin:0 0 1.2rem; color:#fff; font-weight:900; letter-spacing:-0.02em;">Same Job. <span style="background:linear-gradient(90deg,#34c759,#7ee8a1); -webkit-background-clip:text; background-clip:text; color:transparent; font-weight:900;">Half the Price.</span> Or Less.</h2>
+    <p style="color:rgba(255,255,255,0.7); font-size:1.1rem; max-width:640px; margin:0 auto 2.8rem; font-weight:500; line-height:1.55;">We benchmarked the top AI receptionist platforms HVAC and plumbing owners are using in 2026. Here's where we land.</p>
+
+    <div style="overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:20px;">
+      <table style="width:100%; min-width:580px; border-collapse:separate; border-spacing:0; background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.1); border-radius:20px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.5); font-size:0.95rem;">
+        <thead>
+          <tr style="background:rgba(79,35,240,0.12); border-bottom:1px solid rgba(167,139,250,0.25);">
+            <th style="padding:1.3rem 1.2rem; text-align:left; color:#a78bfa; font-weight:800; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;">Provider</th>
+            <th style="padding:1.3rem 1.2rem; color:#a78bfa; font-weight:800; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;">Setup</th>
+            <th style="padding:1.3rem 1.2rem; color:#a78bfa; font-weight:800; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;">Monthly</th>
+            <th style="padding:1.3rem 1.2rem; color:#a78bfa; font-weight:800; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;">Texts Leads</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-top:1px solid rgba(255,255,255,0.06);">
+            <td style="padding:1.1rem 1.2rem; text-align:left; color:rgba(255,255,255,0.9); font-weight:700;">Smith.ai</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">$0</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:#ff3366; font-weight:800;">$240 – $770/mo</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">Add-on</td>
+          </tr>
+          <tr style="background:rgba(255,255,255,0.02);">
+            <td style="padding:1.1rem 1.2rem; text-align:left; color:rgba(255,255,255,0.9); font-weight:700;">AgentZap</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">$0</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:#ff3366; font-weight:800;">$250 – $500/mo</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">Yes</td>
+          </tr>
+          <tr>
+            <td style="padding:1.1rem 1.2rem; text-align:left; color:rgba(255,255,255,0.9); font-weight:700;">Avoca AI</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">Quote</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:#ff3366; font-weight:800;">$300+/mo</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">Yes</td>
+          </tr>
+          <tr style="background:rgba(255,255,255,0.02);">
+            <td style="padding:1.1rem 1.2rem; text-align:left; color:rgba(255,255,255,0.9); font-weight:700;">MyAIFrontDesk</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">$0</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:#ff3366; font-weight:800;">$99 – $299/mo</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.7); font-weight:600;">Limited</td>
+          </tr>
+          <tr style="background:linear-gradient(90deg, rgba(52,199,89,0.18), rgba(79,35,240,0.18)); border-top:2px solid #34c759;">
+            <td style="padding:1.3rem 1.2rem; text-align:left; color:#fff; font-weight:900; font-size:1.02rem;">⭐ ARD 352 Founding</td>
+            <td style="padding:1.3rem 1.2rem; text-align:center; color:#34c759; font-weight:900;">$297 once</td>
+            <td style="padding:1.3rem 1.2rem; text-align:center; color:#34c759; font-weight:900; font-size:1.05rem;">$97/mo · locked for life</td>
+            <td style="padding:1.3rem 1.2rem; text-align:center; color:#34c759; font-weight:800;">✓ Real-time SMS</td>
+          </tr>
+          <tr style="background:rgba(255,255,255,0.02);">
+            <td style="padding:1.1rem 1.2rem; text-align:left; color:rgba(255,255,255,0.6); font-style:italic; font-weight:600;">ARD 352 Regular (after first 10)</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.6); font-weight:700;">$497</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.6); font-weight:700;">$297/mo</td>
+            <td style="padding:1.1rem 1.2rem; text-align:center; color:rgba(255,255,255,0.6); font-weight:700;">✓ Real-time SMS</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="font-size:0.75rem; font-weight:600; color:rgba(255,255,255,0.45); margin-top:1.4rem; text-align:center; letter-spacing:0.02em;">Prices verified May 2026 from each provider's website. Comparison is for Basic-tier features.</div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="center">
+    <div class="section-label">PRICING</div>
+    <h2 class="section-title">Pay once to get started. Pay monthly to keep it running.</h2>
+    <p class="section-sub">Setup is a one-time fee. Monthly covers hosting, maintenance, updates, and support, forever.</p>
+  </div>
+
+  <!-- 🔥 FOUNDING CUSTOMER BANNER -->
+  <div style="max-width: 900px; margin: 2rem auto 2.5rem; padding: 1.4rem 1.8rem; background: linear-gradient(135deg, rgba(255,159,10,0.18), rgba(79,35,240,0.18)); border: 2px solid #ff9f0a; border-radius: 16px; text-align: center; box-shadow: 0 8px 32px rgba(255,159,10,0.15);">
+    <div style="display:inline-block; background:#ff9f0a; color:#0D0D1A; font-weight:800; font-size:0.7rem; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:0.8rem;">🔥 FOUNDING CUSTOMERS ONLY</div>
+    <div style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">
+      First 10 Basic customers: <span style="color:#ff9f0a;">$297 setup + $97/mo</span>, locked in for life.
+    </div>
+    <div style="font-size:0.95rem; color:rgba(255,255,255,0.85); margin-bottom:1rem;">
+      A $200/mo savings, forever. After we hit 10 customers, Basic returns to $497 + $297/mo, no exceptions, no extensions.
+    </div>
+    <a href="https://link.fastpaydirect.com/payment-link/6a0e67bec58f48c13d667039" target="_blank" style="display:inline-block; background:#ff9f0a; color:#0D0D1A; font-weight:700; padding:0.85rem 1.8rem; border-radius:12px; text-decoration:none; font-size:1rem;">Claim Your Founding Spot →</a>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- BASIC -->
+    <div class="pricing-card">
+      <div class="plan-name">Basic</div>
+      <div class="plan-price">$297<span>/mo</span></div>
+      <div class="plan-desc">Setup: $497 one-time · <strong style="color:#ff9f0a;">Founder rate $97/mo + $297 setup</strong> available for first 10 customers, see banner above. A smart chatbot that answers questions and captures leads automatically.</div>
+      <ul class="plan-features">
+        <li>Custom-trained AI chatbot</li>
+        <li>FAQ answering (up to 30 questions)</li>
+        <li>Lead capture (name, phone, email)</li>
+        <li>Email notification per new lead</li>
+        <li>Embed on your website</li>
+        <li>Monthly knowledge base update</li>
+        <li class="no">Appointment booking</li>
+        <li class="no">CRM integration</li>
+        <li class="no">SMS notifications</li>
+      </ul>
+      <a href="https://link.fastpaydirect.com/payment-link/6a0121241d5a394a682e3ff8" target="_blank" class="btn btn-secondary">Get Started. Pay $497 →</a>
+      <details style="margin-top:0.8rem; font-size:0.78rem; color:rgba(255,255,255,0.75);">
+        <summary style="cursor:pointer; color:#ffd400; font-weight:600;">💰 Pay once. Done for years. →</summary>
+        <div style="font-size:0.72rem; margin-top:0.6rem; color:rgba(255,255,255,0.65); line-height:1.5;">One flat fee. Zero monthly billing for the entire term. Locked rate. No surprises.</div>
+        <table style="width:100%; margin-top:0.7rem; border-collapse:collapse; font-size:0.78rem;">
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.15);">
+            <td style="padding:0.45rem 0;"><strong>3-Year Locked</strong><br><span style="font-size:0.65rem; color:rgba(255,255,255,0.5);">Save 28%</span></td>
+            <td style="text-align:right; padding:0.45rem 0; color:#ffd400; font-weight:700;">$8,000 flat</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.15);">
+            <td style="padding:0.45rem 0;"><strong>5-Year Locked</strong><br><span style="font-size:0.65rem; color:rgba(255,255,255,0.5);">Save 34%</span></td>
+            <td style="text-align:right; padding:0.45rem 0; color:#ff9f0a; font-weight:700;">$12,000 flat</td>
+          </tr>
+          <tr>
+            <td style="padding:0.45rem 0;"><strong>10-Year Founder</strong><br><span style="font-size:0.65rem; color:rgba(255,255,255,0.5);">Save 45% · price locked forever</span></td>
+            <td style="text-align:right; padding:0.45rem 0; color:#34c759; font-weight:700;">$20,000 flat</td>
+          </tr>
+        </table>
+        <div style="margin-top:0.7rem; font-size:0.7rem; color:rgba(255,255,255,0.55);">10-year saves you over $16K vs month-to-month. Reply to your intake email to lock a flat-fee deal.</div>
+      </details>
+    </div>
+
+    <!-- GROWTH (FEATURED) -->
+    <div class="pricing-card featured">
+      <div class="featured-badge">MOST POPULAR</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-price">$497<span>/mo</span></div>
+      <div class="plan-desc">Setup: $797 one-time · Full lead-capture and booking engine. The complete local business solution.</div>
+      <ul class="plan-features">
+        <li>Custom-trained AI chatbot</li>
+        <li>Unlimited FAQ training</li>
+        <li>Lead capture + qualification</li>
+        <li>Appointment booking integration</li>
+        <li>CRM integration (GHL, HubSpot, etc.)</li>
+        <li>SMS + email notifications</li>
+        <li>Bi-weekly performance report</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://link.fastpaydirect.com/payment-link/6a0121571d5a394a682e3ff9" target="_blank" class="btn btn-primary">Get Started. Pay $797 →</a>
+    </div>
+
+    <!-- SCALE -->
+    <div class="pricing-card">
+      <div class="plan-name">Scale</div>
+      <div class="plan-price">$797<span>/mo</span></div>
+      <div class="plan-desc">Setup: $1,297 one-time · Multi-location or multi-bot setup with advanced AI flows and full automation stack.</div>
+      <ul class="plan-features">
+        <li>Up to 3 chatbots / locations</li>
+        <li>Advanced conversation flows</li>
+        <li>Full CRM + pipeline automation</li>
+        <li>Appointment + follow-up sequences</li>
+        <li>Custom AI personality & brand voice</li>
+        <li>Weekly performance + lead report</li>
+        <li>Dedicated support + monthly call</li>
+        <li>Speed-to-Lead SMS automation included</li>
+      </ul>
+      <a href="https://link.fastpaydirect.com/payment-link/6a01217f1d5a394a682e3ffa" target="_blank" class="btn btn-secondary">Get Started. Pay $1,297 →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEMO PREVIEW -->
+<section class="demo" id="demo">
+  <div class="center">
+    <div class="section-label">SEE IT IN ACTION</div>
+    <h2 class="section-title">What your visitors experience</h2>
+    <p class="section-sub">A real conversation, on your site, in your brand, answering, capturing, booking. All automatic.</p>
+  </div>
+  <div class="demo-layout" style="margin-top: 3rem;">
+    <div class="demo-text">
+      <h3>A chatbot that actually sounds like your business</h3>
+      <div class="demo-point">
+        <div class="demo-dot">🧠</div>
+        <div class="demo-point-text">
+          <h4>Trained on your exact business</h4>
+          <p>Services, pricing, location, hours, policies, it knows everything you tell it.</p>
+        </div>
+      </div>
+      <div class="demo-point">
+        <div class="demo-dot">🎨</div>
+        <div class="demo-point-text">
+          <h4>Matches your brand</h4>
+          <p>Your colors, your name, your tone. It feels like you, not a generic bot.</p>
+        </div>
+      </div>
+      <div class="demo-point">
+        <div class="demo-dot">📊</div>
+        <div class="demo-point-text">
+          <h4>Every lead tracked</h4>
+          <p>Name, contact, what they need, and when they asked, all logged automatically.</p>
+        </div>
+      </div>
+      <div class="demo-point">
+        <div class="demo-dot">⚡</div>
+        <div class="demo-point-text">
+          <h4>Instant response, every time</h4>
+          <p>No loading, no waiting. Visitors get answers the second they ask.</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-preview">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <div class="chat-name">ARD 352 Assistant</div>
+          <div class="chat-status">● Online now</div>
+        </div>
+      </div>
+      <div class="message">
+        <div class="msg-bot">Hey! Welcome to [Your Business]. I'm here to answer questions, check availability, or get you booked in minutes. How can I help? 👋</div>
+        <div class="msg-time">Just now</div>
+      </div>
+      <div class="msg-wrap">
+        <div class="msg-user">What are your hours?</div>
+      </div>
+      <div class="message">
+        <div class="msg-bot">We're open Monday–Friday 8am–6pm and Saturday 9am–2pm. Want me to check availability and book you a time? 📅</div>
+        <div class="msg-time">Just now</div>
+      </div>
+      <div class="msg-wrap">
+        <div class="msg-user">Yes, Saturday works for me</div>
+      </div>
+      <div class="message">
+        <div class="msg-bot">Perfect! I just need your name and phone number and I'll get you locked in. What's your name?</div>
+        <div class="msg-time">Just now</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <h2>Pick Your Plan. We Build It. You Profit.</h2>
+  <p>No calls. No back-and-forth. Pay your setup fee, fill out a 5-minute brief, and your chatbot is live in 3–5 days, fully automatic.</p>
+
+  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
+    <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:14px; padding:1.5rem 1.8rem; min-width:200px; text-align:center;">
+      <div style="font-size:0.75rem; font-weight:700; letter-spacing:1px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:0.4rem;">Basic</div>
+      <div style="font-size:1.8rem; font-weight:800; margin-bottom:0.2rem;">$497</div>
+      <div style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:1rem;">one-time + $297/mo</div>
+      <a href="https://link.fastpaydirect.com/payment-link/6a0121241d5a394a682e3ff8" target="_blank" class="btn btn-secondary" style="width:100%; text-align:center; display:block;">Get Started →</a>
+    </div>
+    <div style="background:rgba(79,35,240,0.4); border:2px solid var(--purple); border-radius:14px; padding:1.5rem 1.8rem; min-width:200px; text-align:center; position:relative;">
+      <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:0.7rem;font-weight:700;padding:0.25rem 0.9rem;border-radius:50px;white-space:nowrap;">MOST POPULAR</div>
+      <div style="font-size:0.75rem; font-weight:700; letter-spacing:1px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:0.4rem;">Growth</div>
+      <div style="font-size:1.8rem; font-weight:800; margin-bottom:0.2rem;">$797</div>
+      <div style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:1rem;">one-time + $497/mo</div>
+      <a href="https://link.fastpaydirect.com/payment-link/6a0121571d5a394a682e3ff9" target="_blank" class="btn btn-orange" style="width:100%; text-align:center; display:block;">Get Started →</a>
+    </div>
+    <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:14px; padding:1.5rem 1.8rem; min-width:200px; text-align:center;">
+      <div style="font-size:0.75rem; font-weight:700; letter-spacing:1px; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:0.4rem;">Scale</div>
+      <div style="font-size:1.8rem; font-weight:800; margin-bottom:0.2rem;">$1,297</div>
+      <div style="font-size:0.8rem; color:rgba(255,255,255,0.6); margin-bottom:1rem;">one-time + $797/mo</div>
+      <a href="https://link.fastpaydirect.com/payment-link/6a01217f1d5a394a682e3ffa" target="_blank" class="btn btn-secondary" style="width:100%; text-align:center; display:block;">Get Started →</a>
+    </div>
+  </div>
+  <div class="cta-note" style="margin-top:1.5rem;">Secure checkout · Card, Google Pay, Klarna, Afterpay · After payment you'll complete your business brief and we handle the rest.</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">ARD <span>352</span></div>
+    <div style="margin-top:0.4rem;">Rooted. Rising. Unstoppable.</div>
+  </div>
+  <div>
+    AI Automation Agency · Central Florida<br>
+    <a href="mailto:dantredavis352@gmail.com">dantredavis352@gmail.com</a> · <a href="tel:+13527433596">(352) 743-3596</a><br>
+    Clermont, FL 34711
+  </div>
+  <div>
+    © 2026 ARD 352 LLC. All rights reserved.<br>
+    <a href="index.html">← Back to Main Site</a>
+  </div>
+</footer>
+
+<!-- GHL CHAT WIDGET -->
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69e96e22a2b60a83b95c5b0e"></script>
+
+</body>
+</html>

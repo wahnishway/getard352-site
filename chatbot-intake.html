@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18161292859"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18161292859');
+  </script>
+  <!-- Conversion event fires when someone completes intake = Purchase conversion -->
+  <script>
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18161292859/apxzCKXgvqwcELus_dND',
+      'transaction_id': ''
+    });
+  </script>
+  <title>Chatbot Setup. Welcome to ARD 352</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #4F23F0;
+      --orange: #FF5733;
+      --dark:   #1C1C1E;
+      --light:  #F5F3FF;
+      --white:  #FFFFFF;
+      --gray:   #6B7280;
+      --border: #E5E7EB;
+      --green:  #22c55e;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: linear-gradient(135deg, #0f0524 0%, #1a0845 100%);
+      min-height: 100vh; color: var(--white);
+      padding: 40px 5% 80px;
+    }
+    h1, h2, h3, h4, .btn { font-family: 'Space Grotesk', sans-serif; }
+
+    .logo { font-size: 1.4rem; font-weight: 700; color: var(--purple); margin-bottom: 2rem; display: inline-block; }
+    .logo span { color: var(--orange); }
+
+    .page-header { text-align: center; margin-bottom: 3rem; }
+    .welcome-badge {
+      display: inline-block;
+      background: rgba(34,197,94,0.2);
+      border: 1px solid rgba(34,197,94,0.4);
+      color: #4ade80; padding: 0.4rem 1.2rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700; margin-bottom: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .page-header h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 0.8rem; }
+    .page-header p { font-size: 1.05rem; color: #c4b5fd; max-width: 560px; margin: 0 auto; }
+
+    .progress-bar {
+      max-width: 680px; margin: 0 auto 2.5rem;
+      display: flex; align-items: center; gap: 0;
+    }
+    .step-pip {
+      flex: 1; display: flex; flex-direction: column; align-items: center; position: relative;
+    }
+    .step-pip:not(:last-child)::after {
+      content: ''; position: absolute; top: 16px; left: 50%; width: 100%;
+      height: 2px; background: rgba(255,255,255,0.15); z-index: 0;
+    }
+    .pip-circle {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; position: relative; z-index: 1;
+      transition: background 0.3s;
+    }
+    .pip-circle.active { background: var(--purple); border-color: var(--purple); }
+    .pip-circle.done { background: var(--green); border-color: var(--green); }
+    .pip-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.4rem; text-align: center; }
+
+    .form-card {
+      max-width: 680px; margin: 0 auto;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px; padding: 2.5rem;
+    }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #a78bfa; margin-bottom: 0.5rem;
+    }
+    .section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .section-sub { font-size: 0.9rem; color: #c4b5fd; margin-bottom: 2rem; }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0; }
+
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block; font-size: 0.82rem; font-weight: 600;
+      color: rgba(255,255,255,0.75); margin-bottom: 0.45rem;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .form-group .hint { font-size: 0.78rem; color: #a78bfa; margin-bottom: 0.45rem; font-weight: 400; text-transform: none; letter-spacing: 0; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px; color: var(--white);
+      font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: #a78bfa; background: rgba(255,255,255,0.11); }
+    .form-group select option { background: #1a0845; color: var(--white); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group textarea { min-height: 100px; resize: vertical; line-height: 1.5; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .checkbox-group { display: flex; flex-direction: column; gap: 0.6rem; }
+    .checkbox-item { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; }
+    .checkbox-item input[type="checkbox"] {
+      width: 18px; height: 18px; border-radius: 4px;
+      border: 2px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.08);
+      accent-color: var(--purple); cursor: pointer;
+      flex-shrink: 0; padding: 0;
+    }
+    .checkbox-item span { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+
+    .submit-wrap { text-align: center; margin-top: 2.5rem; }
+    .btn-submit {
+      background: var(--orange); color: var(--white);
+      border: none; border-radius: 10px;
+      padding: 1rem 2.5rem; font-size: 1.05rem; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,87,51,0.4); }
+    .submit-note { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 0.8rem; }
+
+    .success-screen {
+      display: none; text-align: center; padding: 3rem 1rem;
+    }
+    .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    .success-screen h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .success-screen p { color: #c4b5fd; max-width: 480px; margin: 0 auto 0.8rem; line-height: 1.6; }
+    .next-steps {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 1.5rem; margin: 2rem auto 0;
+      max-width: 440px; text-align: left;
+    }
+    .next-steps h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; color: #a78bfa; }
+    .next-step { display: flex; gap: 0.8rem; margin-bottom: 0.8rem; font-size: 0.88rem; color: rgba(255,255,255,0.75); }
+    .next-step strong { color: var(--white); }
+
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="logo">ARD <span>352</span></div>
+
+<div class="page-header">
+  <div class="welcome-badge">✅ Payment Received. Let's Build Your Bot</div>
+  <h1>Welcome Aboard.<br>Let's Set Up Your AI Chatbot.</h1>
+  <p>This form takes about 5 minutes. The more detail you give us, the smarter and more accurate your chatbot will be from day one.</p>
+</div>
+
+<!-- PROGRESS INDICATOR -->
+<div class="progress-bar">
+  <div class="step-pip">
+    <div class="pip-circle done">✓</div>
+    <div class="pip-label">Signed Up</div>
+  </div>
+  <div class="step-pip">
+    <div class="pip-circle active">2</div>
+    <div class="pip-label">Business Info</div>
+  </div>
+  <div class="step-pip">
+    <div class="pip-circle">3</div>
+    <div class="pip-label">We Build It</div>
+  </div>
+  <div class="step-pip">
+    <div class="pip-circle">4</div>
+    <div class="pip-label">Goes Live</div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-card" id="intake-form">
+
+  <!-- SECTION 1: BUSINESS -->
+  <div class="section-label">Step 1 of 4</div>
+  <div class="section-title">Your Business Info</div>
+  <div class="section-sub">We use this to train your chatbot and brand it to match your business.</div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>Business Name *</label>
+      <input type="text" id="i-biz" placeholder="Smith HVAC LLC" />
+    </div>
+    <div class="form-group">
+      <label>Industry *</label>
+      <select id="i-industry">
+        <option value="">Select...</option>
+        <option>Dental / Medical</option>
+        <option>Real Estate</option>
+        <option>HVAC / Home Services</option>
+        <option>Law Firm</option>
+        <option>Salon / Spa / Med Spa</option>
+        <option>Auto Dealer</option>
+        <option>Gym / Fitness Studio</option>
+        <option>Contractor / Construction</option>
+        <option>Insurance</option>
+        <option>eCommerce / Retail</option>
+        <option>Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>Owner / Contact Name *</label>
+      <input type="text" id="i-name" placeholder="John Smith" />
+    </div>
+    <div class="form-group">
+      <label>Phone Number *</label>
+      <input type="tel" id="i-phone" placeholder="(352) 000-0000" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>Business Email *</label>
+      <input type="email" id="i-email" placeholder="john@smithhvac.com" />
+    </div>
+    <div class="form-group">
+      <label>Website URL</label>
+      <input type="url" id="i-website" placeholder="https://smithhvac.com" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Business Address / Service Area</label>
+    <input type="text" id="i-location" placeholder="Clermont, FL, serving Lake County" />
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 2: HOURS & SERVICES -->
+  <div class="section-label">Step 2 of 4</div>
+  <div class="section-title">Hours & Services</div>
+  <div class="section-sub">Your chatbot needs to know when you're available and what you offer.</div>
+
+  <div class="form-group">
+    <label>Business Hours *</label>
+    <div class="hint">List all days and times, e.g. "Mon–Fri 8am–6pm, Sat 9am–2pm, Closed Sunday"</div>
+    <input type="text" id="i-hours" placeholder="Mon–Fri 8am–6pm, Sat 9am–2pm, Closed Sunday" />
+  </div>
+
+  <div class="form-group">
+    <label>Main Services You Offer *</label>
+    <div class="hint">List everything, the chatbot will be trained to answer about all of these</div>
+    <textarea id="i-services" placeholder="AC repair, AC installation, heating systems, duct cleaning, maintenance plans, emergency service..."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Pricing (if you share it publicly)</label>
+    <div class="hint">Leave blank if pricing is always quoted by case. This is optional.</div>
+    <textarea id="i-pricing" placeholder="AC tune-up starts at $89 · Free estimates on new installs · Emergency fees apply after 6pm..."></textarea>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 3: FAQ -->
+  <div class="section-label">Step 3 of 4</div>
+  <div class="section-title">Top Questions Customers Ask</div>
+  <div class="section-sub">These become the core of your chatbot's brain. Think about what you answer 10x a day on the phone.</div>
+
+  <div class="form-group">
+    <label>Top 5–10 FAQs your customers ask *</label>
+    <div class="hint">List the question AND the answer you'd normally give. More detail = smarter chatbot.</div>
+    <textarea id="i-faqs" style="min-height:180px;" placeholder="Q: Do you offer free estimates?
+A: Yes, we offer free in-home estimates for all new installations.
+
+Q: How soon can you come out?
+A: We typically schedule same-day or next-day for non-emergency calls.
+
+Q: Do you service all brands?
+A: Yes, we service all major HVAC brands.
+
+Q: What areas do you serve?
+A: We serve Clermont, Groveland, Minneola, and surrounding Lake County areas."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>What should the chatbot do when someone is ready to book?</label>
+    <select id="i-booking-action">
+      <option value="">Select...</option>
+      <option>Collect their name, phone, and email then notify me</option>
+      <option>Send them to my calendar booking link to self-schedule</option>
+      <option>Both, collect info AND offer the calendar link</option>
+      <option>Just collect info and I'll call them back</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Your Booking/Calendar Link (if you have one)</label>
+    <input type="url" id="i-calendar" placeholder="https://calendly.com/yourname OR your GHL link" />
+  </div>
+
+  <hr class="divider" />
+
+  <!-- SECTION 4: BRAND & TONE -->
+  <div class="section-label">Step 4 of 4</div>
+  <div class="section-title">Brand Voice & Preferences</div>
+  <div class="section-sub">This is how your chatbot talks to people. We want it to sound like you, not a robot.</div>
+
+  <div class="form-group">
+    <label>What should we name your chatbot?</label>
+    <div class="hint">Most clients use a first name. E.g. "Aria", "Alex", "Maya", or just "[Business Name] Support"</div>
+    <input type="text" id="i-botname" placeholder="Aria" />
+  </div>
+
+  <div class="form-group">
+    <label>Tone of Voice</label>
+    <select id="i-tone">
+      <option value="">Select one...</option>
+      <option>Friendly and casual, like texting a trusted neighbor</option>
+      <option>Professional and polished, like a front desk receptionist</option>
+      <option>Warm and empathetic, like a customer service rep who really cares</option>
+      <option>Straight to the point, quick answers, no fluff</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>What should the chatbot NOT say or do?</label>
+    <div class="hint">Any topics to avoid, things you don't want promised, etc.</div>
+    <textarea id="i-avoid" placeholder="Don't quote exact prices without seeing the unit. Don't promise same-day service, offer 'we'll do our best.' Don't mention competitors."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>CRM / System we should send leads to</label>
+    <div class="hint">We'll connect your chatbot leads directly here.</div>
+    <select id="i-crm">
+      <option value="">Select...</option>
+      <option>GoHighLevel (GHL)</option>
+      <option>HubSpot</option>
+      <option>Salesforce</option>
+      <option>Zoho CRM</option>
+      <option>Calendly only</option>
+      <option>Just email me the leads</option>
+      <option>I don't have a CRM yet</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Anything else we should know?</label>
+    <textarea id="i-notes" placeholder="Special instructions, anything unique about your business, any specific scenarios the chatbot should handle..."></textarea>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap">
+    <button class="btn-submit" onclick="submitIntake()">Submit My Chatbot Brief →</button>
+    <div class="submit-note">We'll review this within 24 hours and send you a confirmation with your go-live timeline.</div>
+  </div>
+
+</div>
+
+<!-- SUCCESS STATE -->
+<div class="form-card success-screen" id="success-screen">
+  <div class="success-icon">🚀</div>
+  <h2>Brief Received. Let's Build.</h2>
+  <p>We got everything we need to build your AI chatbot. Here's what happens next:</p>
+  <div class="next-steps">
+    <h4>Your Next Steps</h4>
+    <div class="next-step">⏱️ <span><strong>Within 24 hours:</strong> We review your brief and send a confirmation with your go-live date.</span></div>
+    <div class="next-step">🔧 <span><strong>Days 1–3:</strong> We build and train your chatbot on your business info.</span></div>
+    <div class="next-step">✅ <span><strong>Days 3–5:</strong> We send you the embed code for your website. You paste one line and it's live.</span></div>
+    <div class="next-step">📊 <span><strong>Day 7:</strong> First performance check-in, we review real conversations and fine-tune.</span></div>
+  </div>
+  <p style="margin-top:1.5rem; font-size:0.85rem; color:#a78bfa;">Questions? Text or call us at <a href="tel:+13527433596" style="color:#a78bfa;">(352) 743-3596</a> or email <a href="mailto:dantredavis352@gmail.com" style="color:#a78bfa;">dantredavis352@gmail.com</a></p>
+</div>
+
+<script>
+function submitIntake() {
+  const biz      = document.getElementById('i-biz').value.trim();
+  const name     = document.getElementById('i-name').value.trim();
+  const phone    = document.getElementById('i-phone').value.trim();
+  const email    = document.getElementById('i-email').value.trim();
+  const industry = document.getElementById('i-industry').value;
+  const website  = document.getElementById('i-website').value.trim();
+  const location = document.getElementById('i-location').value.trim();
+  const hours    = document.getElementById('i-hours').value.trim();
+  const services = document.getElementById('i-services').value.trim();
+  const pricing  = document.getElementById('i-pricing').value.trim();
+  const faqs     = document.getElementById('i-faqs').value.trim();
+  const booking  = document.getElementById('i-booking-action').value;
+  const calendar = document.getElementById('i-calendar').value.trim();
+  const botname  = document.getElementById('i-botname').value.trim();
+  const tone     = document.getElementById('i-tone').value;
+  const avoid    = document.getElementById('i-avoid').value.trim();
+  const crm      = document.getElementById('i-crm').value;
+  const notes    = document.getElementById('i-notes').value.trim();
+
+  if (!biz || !name || !phone || !email || !hours || !services || !faqs) {
+    alert('Please fill in all required fields (marked with *).');
+    return;
+  }
+
+  const subject = encodeURIComponent('Chatbot Brief Submitted, ' + biz);
+  const body = encodeURIComponent(
+    '=== CHATBOT INTAKE BRIEF ===\n\n' +
+    'BUSINESS: ' + biz + '\n' +
+    'OWNER: ' + name + '\n' +
+    'PHONE: ' + phone + '\n' +
+    'EMAIL: ' + email + '\n' +
+    'INDUSTRY: ' + industry + '\n' +
+    'WEBSITE: ' + (website || 'N/A') + '\n' +
+    'SERVICE AREA: ' + (location || 'N/A') + '\n\n' +
+    '--- HOURS ---\n' + hours + '\n\n' +
+    '--- SERVICES ---\n' + services + '\n\n' +
+    '--- PRICING ---\n' + (pricing || 'Not provided') + '\n\n' +
+    '--- FAQs ---\n' + faqs + '\n\n' +
+    '--- BOOKING ACTION ---\n' + (booking || 'Not specified') + '\n' +
+    'Calendar Link: ' + (calendar || 'N/A') + '\n\n' +
+    '--- BRAND ---\n' +
+    'Bot Name: ' + (botname || 'Not specified') + '\n' +
+    'Tone: ' + (tone || 'Not specified') + '\n' +
+    'Avoid: ' + (avoid || 'Nothing specified') + '\n' +
+    'CRM: ' + (crm || 'Not specified') + '\n\n' +
+    '--- NOTES ---\n' + (notes || 'None') + '\n\n' +
+    'Submitted from: ARD 352 Chatbot Intake Form'
+  );
+
+  window.location.href = 'mailto:dantredavis352@gmail.com?subject=' + subject + '&body=' + body;
+
+  document.getElementById('intake-form').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
